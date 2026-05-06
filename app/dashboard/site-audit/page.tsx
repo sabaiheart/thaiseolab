@@ -12,6 +12,7 @@ interface AuditResult {
   cls: number
   fid: number
   issues: { type: 'error' | 'warning' | 'passed'; title: string; description: string }[]
+  aiAnalysis?: string
 }
 
 export default function SiteAudit() {
@@ -169,7 +170,20 @@ export default function SiteAudit() {
                 </div>
               </div>
             ))}
-          </div>
+          </div>{result.aiAnalysis && (
+            <div style={{ marginTop: 32 }}>
+              <div style={{ fontFamily: 'monospace', fontSize: 10, letterSpacing: 3, color: '#666', marginBottom: 16 }}>AI ANALYSIS — ภาษาไทย</div>
+              <div style={{ background: '#111', border: '1px solid rgba(232,25,12,0.2)', borderRadius: 8, padding: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#E8190C' }} />
+                  <span style={{ fontFamily: 'monospace', fontSize: 11, color: '#E8190C' }}>Claude AI · SEO Expert</span>
+                </div>
+                <div style={{ fontSize: 14, color: '#ccc', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
+                  {result.aiAnalysis}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
