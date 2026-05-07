@@ -183,7 +183,7 @@ export default function SiteAudit() {
               <div style={{ background: '#111', border: '1px solid rgba(232,25,12,0.2)', borderRadius: 8, padding: '24px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#E8190C' }} />
-                  <span style={{ fontFamily: 'monospace', fontSize: 11, color: '#E8190C' }}>Claude AI · SEO Expert</span>
+                  <span style={{ fontFamily: 'monospace', fontSize: 11, color: '#E8190C' }}>AI · SEO Expert</span>
                 </div>
                 <div style={{ fontSize: 14, color: '#ccc', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
                   {result.aiAnalysis}
