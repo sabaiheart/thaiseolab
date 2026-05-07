@@ -48,6 +48,13 @@ export default function SiteAudit() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'เกิดข้อผิดพลาด')
       setResult(data)
+    fetch('/api/site-audit-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url, ...data })
+      }).then(r => r.json()).then(({ aiAnalysis }) => {
+        setResult(prev => prev ? { ...prev, aiAnalysis } : prev)
+      })
       setCredits(c => (c ?? 0) - 10)
     } catch (e: any) {
       setError(e.message)
