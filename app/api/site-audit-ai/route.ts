@@ -1,7 +1,8 @@
-export const maxDuration = 60
 
 import { NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+
+export const maxDuration = 60
 
 export async function POST(request: Request) {
   const { url, performance, seo, accessibility, bestPractices, lcp, cls, fid, issues } = await request.json()
