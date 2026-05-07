@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const warningIssues = issues.filter((i: any) => i.type === 'warning').map((i: any) => i.title).join(', ')
 
   const aiRes = await anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5',
     max_tokens: 1000,
     messages: [{
       role: 'user',
