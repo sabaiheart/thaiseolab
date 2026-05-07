@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
   const aiRes = await anthropic.messages.create({
     model: 'claude-sonnet-4-5',
-    max_tokens: 1000,
+    max_tokens: 2000,
     messages: [{
       role: 'user',
       content: `คุณเป็น SEO expert ภาษาไทย วิเคราะห์ผล Site Audit นี้และให้คำแนะนำเป็นภาษาไทยที่เข้าใจง่าย:
