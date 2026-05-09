@@ -1,19 +1,20 @@
+export const maxDuration = 60
+
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
 export async function POST(request: Request) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
   const body = await request.text()
   const sig = request.headers.get('stripe-signature')!
-
   let event: Stripe.Event
+
   try {
     event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
   } catch {
@@ -31,7 +32,6 @@ export async function POST(request: Request) {
 
     const { data: current } = await supabase
       .from('credits').select('balance').eq('user_id', user_id).single()
-
     const newBalance = (current?.balance || 0) + credits
 
     await supabase.from('credits')
